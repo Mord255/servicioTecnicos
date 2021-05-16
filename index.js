@@ -13,11 +13,11 @@ app.use(cors())
 app.set('port',process.env.PORT || 7000)
 
 const dbOptions = {
-    host : 'localhost',
-    port:'3366',
-    user:'root',
-    password:'',
-    database:'sistema_tecnicos'
+    host : 'mysql-jfps.alwaysdata.net',
+    // port:'3366',
+    user:'jfps_admin',
+    password:'JeanFranco25',
+    database:'jfps_compuucv'
 }
 
 // middlewares running ------------------------------------
