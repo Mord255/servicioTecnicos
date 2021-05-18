@@ -7,6 +7,7 @@ routes.post('/postLogin',(req,res)=>{
         if (err) {
             return res.send(err)
         }else{
+            console.log(req.body);
             conn.query('SELECT id_tecnicos,correo_tecnicos,password_Tecnicos FROM tecnicos WHERE correo_tecnicos = ? AND password_Tecnicos = ?  ' ,[req.body.usuario,req.body.password], (err,rows) => {
                 if (err) {
                     return res.send(err)
@@ -97,10 +98,4 @@ routes.post('/postModificarTecnicoRedes',(req,res)=>{
         }
     })
 })
-
-
-
-
-
-
 module.exports = routes;
