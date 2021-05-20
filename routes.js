@@ -1,7 +1,7 @@
 const express = require("express");
 const routes = express.Router();
 
-routes.post('/getLogin/:usuario/:password',(req,res)=>{
+routes.get('/getLogin/:usuario/:password',(req,res)=>{
     req.getConnection((err,conn) => {
         if (err) {
             return res.send(err)
@@ -50,7 +50,7 @@ routes.get('/getMostrarTecnico/:id_tecnicos',(req,res)=>{
     })
 })
 
-routes.post('/getRegistro/:nombre/:correo/:password/:telefono',(req,res)=>{
+routes.get('/getRegistro/:nombre/:correo/:password/:telefono',(req,res)=>{
     req.getConnection((err,conn) => {
         if (err) {
             return res.send(err)
@@ -66,7 +66,7 @@ routes.post('/getRegistro/:nombre/:correo/:password/:telefono',(req,res)=>{
     })
 })
 
-routes.post('/getModificarTecnico/:nombre/:correo/:password/:telefono/:img/:pais/:ciudad/:distrito/:experiencia/:id_tecnicos',(req,res)=>{
+routes.get('/getModificarTecnico/:nombre/:correo/:password/:telefono/:img/:pais/:ciudad/:distrito/:experiencia/:id_tecnicos',(req,res)=>{
     req.getConnection((err,conn) => {
         if (err) {
             return res.send(err)
@@ -82,7 +82,7 @@ routes.post('/getModificarTecnico/:nombre/:correo/:password/:telefono/:img/:pais
     })
 })
 
-routes.post('/getModificarTecnicoRedes/:link_facebook/:link_whatsapp/:link_instagram/:id_tecnicos',(req,res)=>{
+routes.get('/getModificarTecnicoRedes/:link_facebook/:link_whatsapp/:link_instagram/:id_tecnicos',(req,res)=>{
     req.getConnection((err,conn) => {
         if (err) {
             return res.send(err)
