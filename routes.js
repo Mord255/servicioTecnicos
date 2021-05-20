@@ -1,14 +1,13 @@
 const express = require("express");
 const routes = express.Router();
-const axios = require("axios");
 
-routes.post('/postLogin',(req,res)=>{
+routes.post('/getLogin/:usuario/:password',(req,res)=>{
     req.getConnection((err,conn) => {
         if (err) {
             return res.send(err)
         }else{
             console.log(req);
-            conn.query('SELECT id_tecnicos,correo_tecnicos,password_Tecnicos FROM tecnicos WHERE correo_tecnicos = ? AND password_Tecnicos = ?  ' ,[req.body.usuario,req.body.password], (err,rows) => {
+            conn.query('SELECT id_tecnicos,correo_tecnicos,password_Tecnicos FROM tecnicos WHERE correo_tecnicos = ? AND password_Tecnicos = ?  ' ,[req.params.usuario,req.params.password], (err,rows) => {
                 if (err) {
                     return res.send(err)
                 }else{
@@ -51,12 +50,12 @@ routes.get('/getMostrarTecnico/:id_tecnicos',(req,res)=>{
     })
 })
 
-routes.post('/postRegistro',(req,res)=>{
+routes.post('/getRegistro/:nombre/:correo/:password/:telefono',(req,res)=>{
     req.getConnection((err,conn) => {
         if (err) {
             return res.send(err)
         }else{
-            conn.query('CALL nueva_data(?,?,?,?,?,?,?,?,?,?,?,?)' ,[req.body.nombre,req.body.correo,req.body.password,req.body.img,req.body.pais,req.body.ciudad,req.body.distrito,req.body.experiencia,req.body.link_facebook,req.body.link_whatsapp,req.body.link_instagram,req.body.telefono], (err,rows) => {
+            conn.query('INSERT INTO tecnicos(nombre_tecnicos,correo_tecnicos,password_Tecnicos,telefono_tecnicos,img_tecnicos,pais_tecnicos,ciudad_tecnicos,distrito_tecnicos,experiencia_tecnicos) VALUES (?,?,?,?,"","","","","")' ,[req.params.nombre,req.params.correo,req.params.password,req.params.telefono], (err,rows) => {
                 if (err) {
                     return res.send(err)
                 }else{
@@ -67,12 +66,12 @@ routes.post('/postRegistro',(req,res)=>{
     })
 })
 
-routes.post('/postModificarTecnico',(req,res)=>{
+routes.post('/getModificarTecnico/:nombre/:correo/:password/:telefono/:img/:pais/:ciudad/:distrito/:experiencia/:id_tecnicos',(req,res)=>{
     req.getConnection((err,conn) => {
         if (err) {
             return res.send(err)
         }else{
-            conn.query('UPDATE tecnicos SET nombre_tecnicos=?,correo_tecnicos=?,password_Tecnicos=?,telefono_Tecnicos=?,img_tecnicos=?,pais_tecnicos=?,ciudad_tecnicos=?,distrito_tecnicos=?,experiencia_tecnicos=? WHERE id_tecnicos = ?' ,[req.body.nombre,req.body.correo,req.body.password,req.body.telefono,req.body.img,req.body.pais,req.body.ciudad,req.body.distrito,req.body.experiencia,req.body.id_tecnicos], (err,rows) => {
+            conn.query('UPDATE tecnicos SET nombre_tecnicos=?,correo_tecnicos=?,password_Tecnicos=?,telefono_Tecnicos=?,img_tecnicos=?,pais_tecnicos=?,ciudad_tecnicos=?,distrito_tecnicos=?,experiencia_tecnicos=? WHERE id_tecnicos = ?' ,[req.params.nombre,req.params.correo,req.params.password,req.params.telefono,req.params.img,req.params.pais,req.params.ciudad,req.params.distrito,req.params.experiencia,req.params.id_tecnicos], (err,rows) => {
                 if (err) {
                     return res.send(err)
                 }else{
@@ -83,12 +82,12 @@ routes.post('/postModificarTecnico',(req,res)=>{
     })
 })
 
-routes.post('/postModificarTecnicoRedes',(req,res)=>{
+routes.post('/getModificarTecnicoRedes/:link_facebook/:link_whatsapp/:link_instagram/:id_tecnicos',(req,res)=>{
     req.getConnection((err,conn) => {
         if (err) {
             return res.send(err)
         }else{
-            conn.query('UPDATE redes SET facebook_redes=?,whatsapp_redes=?,instagram_redes=? WHERE id_tecnicos = ?' ,[req.body.link_facebook,req.body.link_whatsapp,req.body.link_instagram,req.body.id_tecnicos], (err,rows) => {
+            conn.query('UPDATE redes SET facebook_redes=?,whatsapp_redes=?,instagram_redes=? WHERE id_tecnicos = ?' ,[req.params.link_facebook,req.params.link_whatsapp,req.params.link_instagram,req.params.id_tecnicos], (err,rows) => {
                 if (err) {
                     return res.send(err)
                 }else{
