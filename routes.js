@@ -59,7 +59,7 @@ routes.get('/getRegistro/:nombre/:correo/:password/:telefono',(req,res)=>{
                 if (err) {
                     return res.send(err)
                 }else{
-                    res.json(rows)
+                    res.json("success")
                 }
             })
         }
@@ -75,7 +75,7 @@ routes.get('/getModificarTecnico/:nombre/:correo/:password/:telefono/:img/:pais/
                 if (err) {
                     return res.send(err)
                 }else{
-                    res.json(rows)
+                    res.json("success")
                 }
             })
         }
@@ -91,7 +91,7 @@ routes.get('/getModificarTecnicoRedes/:link_facebook/:link_whatsapp/:link_instag
                 if (err) {
                     return res.send(err)
                 }else{
-                    res.json(rows)
+                    res.json("success")
                 }
             })
         }
